@@ -23,7 +23,7 @@ let base = 1024;
 let table = [base, base+1, base+2, base+3];
 
 // Array literals can contain object literals or other array literals:
-let b = [[1, {x: 1, y: 2}], [2, {x: 3, y: 4}]];
+let bx = [[1, {x: 1, y: 2}], [2, {x: 3, y: 4}]];
 
 /*
 If an array literal contains multiple commas in a row, with no value between, the
@@ -42,7 +42,7 @@ let undefs = [,,];                          // An array with no elements but a l
 In ES6 and later, you can use the “spread operator,” ..., to include the elements of
 one array within an array literal:
 */
-let a = [1, 2, 3];
+let ax = [1, 2, 3];
 let b = [0, ...a, 4];                       // b == [0, 1, 2, 3, 4]
 
 
@@ -70,11 +70,11 @@ let letters = [..."hello world"];
 
 // 7.1.3 The Array() Constructor
 // • Call it with no arguments: equivalent to the array literal [].
-let a = new Array();
+let ay = new Array();
 
 // Call it with a single numeric argument, which specifies a length: 
 // creates an array with the specified length
-let a = new Array(10);
+let ak = new Array(10);
 
 // • Explicitly specify two or more array elements or a single non-numeric element for the array:
 // constructor arguments become the elements of the new array
