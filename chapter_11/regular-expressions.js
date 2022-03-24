@@ -124,3 +124,50 @@ includes capturing groups, then the text that matches the capturing groups will 
 included in the returned array. */
 const htmlTag = /<([^>]+)>/;            // < followed by one or more non->, followed by >
 "Testing<br/>1,2,3".split(htmlTag)      // => ["Testing", "br/", "1,2,3"]
+
+
+
+// 11.3.3 The RegExp Class
+// Find all five-digit numbers in a string. Note the double \\ in this case.
+let zipcode = new RegExp("\\d{5}", "g");
+
+/* Instead of passing a string as the first argument to RegExp(), you can also pass a
+RegExp object. This allows you to copy a regular expression and change its flags: */
+let exactMatch = /JavaScript/;
+let caseInsensitive = new RegExp(exactMatch, "i");
+
+// the loop in the following code will run twice
+let patternn = /Java/g;
+let textt = "JavaScript > Java";
+let matchh;
+while((matchh = patternn.exec(textt)) !== null) {
+    console.log(`Matched ${matchh[0]} at ${matchh.index}`);
+    console.log(`Next search begins at ${patternn.lastIndex}`);
+}
+
+// The lastIndex Property and RegExp Reuse
+/* Suppose, for example, that we wanted to find the index of all <p> tags within a string
+of HTML text. We might write code like this: */
+let matchr, positions = [];
+while((matchr = /<p>/g.exec(html)) !== null) { // POSSIBLE INFINITE LOOP
+    positions.push(match.index);
+}
+// This code does not do what we want it to. The problem is that we use a RegExp literal in the while
+// loop condition.
+
+// reusing a RegExp object is the wrong thing to do
+/* Because we set the g flag on the RegExp, the lastIndex property is changed after successful
+matches, and the test() method (which is based on exec()) starts searching
+for a match at the position specified by lastIndex. After matching the “pp” in “apple”,
+lastIndex is 3, and so we start searching the word “book” at position 3 and do not
+see the “oo” that it contains. */
+let dictionary = [ "apple", "book", "coffee" ];
+let doubleLetterWords = [];
+let doubleLetter = /(\w)\1/g;
+
+for (let word of dictionary) {
+    if (doubleLetter.test(word)) {
+        doubleLetterWords.push(word);
+    }
+}
+doubleLetterWords                               // => ["apple", "coffee"]: "book" is missing!
