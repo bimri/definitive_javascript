@@ -1,0 +1,12 @@
+<script>
+let name = new URL(document.URL).searchParams.get("name");
+document.querySelector('h1').innerHTML = "Hello " + name;
+</script>
+
+let name = name
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;")
+    .replace(/\//g, "&#x2F;")
