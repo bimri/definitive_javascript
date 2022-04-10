@@ -1,3 +1,6 @@
+// 15.7.2 Scripting SVG 
+/* function uses setTimeout() to ensure that it runs once a minute:*/
+
 (function updateClock() {                           // Update the SVG clock graphic to show current time
     let now = new Date();                           // Current time
     let sec = now.getSeconds();                     // Seconds
