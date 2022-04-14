@@ -1,6 +1,5 @@
 "The in Operator"
  
-
 let point = {x: 1, y: 1};               // Define an object
 "x" in point                            // => true: object has property named "x"
 "z" in point                            // => false: object has no "z" property.
