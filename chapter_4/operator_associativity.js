@@ -1,5 +1,4 @@
 "Operator Associativity"
-
 /*
 specifies the associativity of the operator. A value
 of L specifies left-to-right associativity, and a value of R specifies right-to-left associativity.
