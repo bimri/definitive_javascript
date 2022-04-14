@@ -1,10 +1,8 @@
-/*
-The simplest expressions, known as primary expressions, are those that stand alone—
+/* The simplest expressions, known as primary expressions, are those that stand alone—
 they do not include any simpler expressions. 
 
 Primary expressions in JavaScript are
-constant or literal values, certain language keywords, and variable references.
-*/
+constant or literal values, certain language keywords, and variable references. */
 
 // Literals are constant values that are embedded directly in your program.
 1.23                // A number literal
