@@ -1,12 +1,10 @@
 "Property Access Expressions"
 
-/*
-A property access expression evaluates to the value of an object property or an array
+/* A property access expression evaluates to the value of an object property or an array
 element.
 
 expression . identifier
-expression [ expression ]
-*/
+expression [ expression ] */
 
 let o = {x: 1, y: {z: 3}};                  // An example object
 let a = [o, 4, [5, 6]];                     // An example array that contains the object
