@@ -1,5 +1,4 @@
 "Conditional Invocation"
-
 // In ES2020, you can also invoke a function using ?.() instead of ().
 /*
 With the new ?.() invocation
