@@ -1,4 +1,4 @@
-// c15.8.4 Canvas Drawing Operations
+// c 15.8.4 Canvas Drawing Operations
 "Adding curves to a path"
 
 // A utility function to convert angles from degrees to radians
@@ -61,3 +61,24 @@ c.fillRect(705-3, 130-3, 6, 6);
 // Finally, fill the curves and stroke their outlines
 c.fill();
 c.stroke();
+
+
+// Text
+/* If you need to measure text yourself before drawing it, pass it to the measureText()
+method. This method returns a TextMetrics object that specifies the measurements of
+the text when drawn with the current font. This is useful if you want to center a 
+string of text within a canvas, */
+let width = c.measureText(text).width;
+
+
+// Images
+/* In addition to drawing images into a canvas, we can also extract the content of a canvas
+as an image using the toDataURL() method. Unlike all the other methods
+described here, toDataURL() is a method of the Canvas element itself, not of the context
+object. You normally invoke toDataURL() with no arguments, and it returns the
+content of the canvas as a PNG image, encoded as a string using a data: URL. The
+returned URL is suitable for use with an <img> element, and you can make a static
+snapshot of a canvas with code like this: */
+let img = document.createElement("img");            // Create an <img> element
+img.src = canvas.toDataURL();                       // Set its src attribute
+document.body.appendChild(img);                     // Append it to the document
