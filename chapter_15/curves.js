@@ -82,3 +82,29 @@ snapshot of a canvas with code like this: */
 let img = document.createElement("img");            // Create an <img> element
 img.src = canvas.toDataURL();                       // Set its src attribute
 document.body.appendChild(img);                     // Append it to the document
+
+// 15.8.5 Coordinate System Transforms
+
+// Shear transform:
+// x' = x + kx*y;
+// y' = ky*x + y;
+function shear(c, kx, ky) { c.transform(1, ky, kx, 1, 0, 0); }
+
+// Rotate theta radians counterclockwise around the point (x,y)
+// This can also be accomplished with a translate, rotate, translate sequence
+function rotateAbout(c, theta, x, y) {
+    let ct = Math.cos(theta);
+    let st = Math.sin(theta);
+    c.transform(ct, -st, st, ct, -x*ct-y*st+x, x*st-y*ct+y);
+}
+
+/* The setTransform() method takes the same arguments as transform(), but instead
+of transforming the current coordinate system, it ignores the current system, transforms
+the default coordinate system, and makes the result the new current coordinate
+system. setTransform() is useful to temporarily reset the canvas to its default coordinate
+system: */
+c.save(); // Save current coordinate system
+c.setTransform(1,0,0,1,0,0); // Revert to the default coordinate system
+
+// Perform operations using default CSS pixel coordinates
+c.restore(); // Restore the saved coordinate system
