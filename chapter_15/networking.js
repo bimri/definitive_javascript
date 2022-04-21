@@ -66,3 +66,66 @@ authHeaders.set("Authorization",
 fetch("/api/users/", { headers: authHeaders })
     .then(response => response.json())                  // Error handling omitted...
     .then(usersList => displayAllUsers(usersList));
+
+
+// Streaming response bodies
+fetch('big.json')
+    .then(response => streamBody(response, updateProgress))
+    .then(bodyText => JSON.parse(bodyText))
+    .then(handleBigJSONObject);
+
+
+// Specifying the request method and request body
+fetch(url, { method: "POST" }).then(r => r.json()).then(handleResponse);
+
+fetch(url, {
+    method: "POST",
+    body: "hello world"
+})
+
+
+fetch(url, {
+    method: "POST",
+    headers: new Headers({"Content-Type": "application/json"}),
+    body: JSON.stringify(requestBody)
+})
+
+
+// File upload with fetch()
+// The canvas.toBlob() function is callback-based.
+// This is a Promise-based wrapper for it.
+async function getCanvasBlob(canvas) {
+    return new Promise((resolve, reject) => {
+        canvas.toBlob(resolve);
+    });
+}
+
+// Here is how we upload a PNG file from a cancas
+async function uploadCancasImage(canvas) {
+    let pngblob = await getCanvasBlob(canvas);
+    let formdata = new FormData();
+    formdata.set("canvaimage", pngblob);
+    let response = await fetch("/upload", {method: "POST", body: formdata});
+    let body = await response.json();
+}
+
+
+// Aborting a request
+/* If you want to have the option of aborting a fetch() request, then create an Abort‐
+Controller object before starting the request. */
+// This function is like fetch(), but it adds support for a timeout
+// property in the options object and aborts the fetch if it is not complete
+// within the number of milliseconds specified by that property.
+function fetchWithTimeout (url, option=[]) {
+    if (options.timeout) {                              // If the timeout property exists and is nonzero
+        let Controller = new AbortController();         // Create a controller
+        options.signal = controller.signal;             // Set the signal property
+        // Start a timer that will send the abort signal after the specified
+        // number of milliseconds have passed. Note that we never cancel
+        // this timer. Calling abort() after the fetch is complete has
+        // no effect.
+        setTimeout(() => { controller.abort(); }, options.timeout);
+    }
+    // Now just perform a normal fetch
+    return fetch(url, options);
+}
